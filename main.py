@@ -4,6 +4,7 @@ from agent import rag_app
 from vectorstore import get_vectorstore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -11,6 +12,15 @@ app = FastAPI(
     title="Pettah CTB Bus Stand API",
     description="RAG backend for passenger queries and admin data ingestion.",
     version="1.0.0"
+)
+
+# Allow your frontend to talk to your backend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # In production, replace "*" with your specific frontend URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.post("/api/query")
