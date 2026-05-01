@@ -17,7 +17,7 @@ app = FastAPI(
 # Allow your frontend to talk to your backend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"], # In production, replace "*" with your specific frontend URL
+    allow_origins=["https://pettah-hub-backend.vercel.app"], # In production, replace "*" with your specific frontend URL
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
